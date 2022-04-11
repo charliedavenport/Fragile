@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/atlas_16x.png-25ad90004d2cf27b287502fc1253a5f5.stex"
+path="res://.import/light.png-4c86f7c28b3488bb31140d305dbce5a6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://atlas_16x.png"
-dest_files=[ "res://.import/atlas_16x.png-25ad90004d2cf27b287502fc1253a5f5.stex" ]
+source_file="res://Level/light.png"
+dest_files=[ "res://.import/light.png-4c86f7c28b3488bb31140d305dbce5a6.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/PlayerCamera.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=28]
+radius = 36.1248
+
+[sub_resource type="OccluderPolygon2D" id=29]
+polygon = PoolVector2Array( -32, -18, -18, -32, 18, -32, 31, -18, 31, 19, 19, 32, -20, 32, -32, 18 )
+
+[node name="Player" type="KinematicBody2D"]
+z_index = 4
+collision_mask = 6
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 28 )
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 29 )

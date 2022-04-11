@@ -1,0 +1,37 @@
+Player
+  - finish movement logic
+  - artwork for bull
+     - 8-directional sprites
+Level
+  - china shelves artwork
+     - edit spritesheet
+     - "breaking" animations
+  - carpets have sliding movement?
+     - player detects collider on carpets
+     - works like "asteroids" movement
+        - other way around?? :/
+  - big floor vases
+     - breaking anim
+  - maek more levels
+Game
+  - (playable) main menu
+     - select level
+  - win/game over state
+     - no hp wildcard?
+     - win/lose artwork
+Music
+  - repeating loop that gets more intense ...
+     - as player gets lower hp?
+     - as time runs out?
+  - calm menu music?
+Sound
+  - player
+     - foot steps
+     - slowing down
+     - bull grunting noise?
+  - level
+     - china breaking
+     - wall hit
+  - game
+     - win/loss sound effect
+     - menu selecting sounds
