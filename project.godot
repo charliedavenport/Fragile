@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "StaticBody2D",
 "class": "Shelf",
 "language": "GDScript",
-"path": "res://Level/Shelf.gd"
+"path": "res://Level/Shelf/Shelf.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Fragile"
-run/main_scene="res://Level/Level.tscn"
+run/main_scene="res://GameManager/GameManager.tscn"
 config/icon="res://icon.png"
 
 [display]

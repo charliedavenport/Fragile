@@ -46,7 +46,7 @@ func _physics_process(delta) -> void:
 	for i in range(slides):
 		var col = get_slide_collision(i).collider
 		if col is Shelf:
-			if prev_vel.length() > 300:
+			if prev_vel.length() > 400:
 				col.break_shelf()
 			elif prev_vel.length() > 10:
 				col.bump()

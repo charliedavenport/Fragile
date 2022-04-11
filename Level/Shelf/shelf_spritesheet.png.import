@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-4c86f7c28b3488bb31140d305dbce5a6.stex"
+path="res://.import/shelf_spritesheet.png-b1f6c6a81f50993c60c54be1a74c2aa0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level/light.png"
-dest_files=[ "res://.import/light.png-4c86f7c28b3488bb31140d305dbce5a6.stex" ]
+source_file="res://Level/Shelf/shelf_spritesheet.png"
+dest_files=[ "res://.import/shelf_spritesheet.png-b1f6c6a81f50993c60c54be1a74c2aa0.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
