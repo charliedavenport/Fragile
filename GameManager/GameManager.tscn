@@ -17,3 +17,4 @@ rotation = 3.14159
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DebugGUI" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false

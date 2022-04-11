@@ -40,7 +40,6 @@ func set_zoom(_player_speed) -> void:
 	zoom = Vector2(zoom_val, zoom_val)
 
 func add_shake(_value) -> void:
-	print(shake_timer.is_stopped())
 	if not shake_timer.is_stopped():
 		return
 	shake_amt = min(shake_amt + _value, 1.0)

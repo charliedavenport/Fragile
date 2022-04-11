@@ -9,16 +9,40 @@ const FRICTION = 0.01
 var vel : Vector2
 
 onready var cam = get_node("PlayerCamera")
+onready var sprite = get_node("Sprite")
 
-#func _draw():
-#	draw_line(Vector2.ZERO, vel.rotated(-self.rotation), Color.green)
+func _draw():
+	#draw_line(Vector2.ZERO, vel.rotated(-self.rotation), Color.green)
+	draw_line(Vector2.ZERO, Vector2.UP * 50, Color.blue)
 
 func _ready() -> void:
 	vel = Vector2.ZERO
 
 func _process(delta) -> void:
-	pass
-	#update()
+	update()
+	# sprite always points up
+	sprite.rotation = -rotation
+	# flip the sprite based on rotation
+	var check_rot = fmod(rotation, TAU)
+	if check_rot < 0.0:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
+	# determine which sprite frame to show, based on rotation
+	check_rot = abs(check_rot)
+	#print(check_rot)
+	var y_coord
+	if check_rot < 1.0/16.0 * TAU:
+		y_coord = 0
+	elif check_rot < 3.0/16.0 * TAU:
+		y_coord = 1
+	elif check_rot < 5.0/16.0 * TAU:
+		y_coord = 2
+	elif check_rot < 7.0/16.0 * TAU:
+		y_coord = 3
+	else:
+		y_coord = 4
+	sprite.frame_coords.y = y_coord
 
 func _physics_process(delta) -> void:
 	var prev_vel = vel

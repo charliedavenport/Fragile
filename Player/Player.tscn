@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/PlayerCamera.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Player/bull_spritesheet.png" type="Texture" id=3]
+
+[sub_resource type="OccluderPolygon2D" id=29]
+polygon = PoolVector2Array( -32, -18, -18, -32, 18, -32, 31, -18, 31, 19, 19, 32, -20, 32, -32, 18 )
 
 [sub_resource type="CircleShape2D" id=28]
 radius = 36.1248
 
-[sub_resource type="OccluderPolygon2D" id=29]
-polygon = PoolVector2Array( -32, -18, -18, -32, 18, -32, 31, -18, 31, 19, 19, 32, -20, 32, -32, 18 )
+[sub_resource type="Animation" id=30]
+resource_name = "idle"
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 4
@@ -19,7 +22,15 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
+hframes = 3
+vframes = 5
+frame = 6
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
+scale = Vector2( 0.25, 0.25 )
+occluder = SubResource( 29 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 28 )
@@ -43,7 +54,8 @@ __meta__ = {
 }
 
 [node name="ShakeTimer" type="Timer" parent="PlayerCamera"]
+wait_time = 0.5
 one_shot = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 29 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 30 )
