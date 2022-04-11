@@ -29,5 +29,21 @@ current = true
 zoom = Vector2( 2, 2 )
 script = ExtResource( 2 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="PlayerCamera"]
+layer = -3
+
+[node name="ColorRect" type="ColorRect" parent="PlayerCamera/CanvasLayer"]
+margin_left = -1369.0
+margin_top = -771.0
+margin_right = 1409.0
+margin_bottom = 811.0
+color = Color( 0.368627, 0.211765, 0.262745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShakeTimer" type="Timer" parent="PlayerCamera"]
+one_shot = true
+
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 29 )

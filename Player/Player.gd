@@ -48,5 +48,7 @@ func _physics_process(delta) -> void:
 		if col is Shelf:
 			if prev_vel.length() > 400:
 				col.break_shelf()
+				cam.add_shake(0.5)
 			elif prev_vel.length() > 10:
 				col.bump()
+				cam.add_shake(0.3)
