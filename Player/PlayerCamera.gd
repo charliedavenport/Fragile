@@ -19,6 +19,12 @@ var noise_y : float
 onready var target = get_parent()
 var zoom_val : float
 
+const FADE_DURATION = 0.25
+onready var fade_black_rect = get_node("CanvasLayer2/FadeToBlackColorRect")
+onready var fade_tween = get_node("FadeTween")
+
+signal done_fading
+
 func _ready() -> void:
 	set_as_toplevel(true)
 	shake_amt = 0.0
@@ -51,3 +57,14 @@ func shake() -> void:
 	rotation = MAX_ROLL * strength * noise.get_noise_2d(noise.seed, noise_y)
 	offset.x = MAX_OFFSET.x * strength * noise.get_noise_2d(noise.seed*2, noise_y)
 	offset.y = MAX_OFFSET.y * strength * noise.get_noise_2d(noise.seed*3, noise_y)
+
+func fade_to_black(_on : bool) -> void:
+	var curr_color = fade_black_rect.color
+	var alpha = 1.0 if _on else 0.0
+	var target_color = Color(curr_color.r, curr_color.g, curr_color.b, alpha)
+	fade_tween.interpolate_property(fade_black_rect, "color", curr_color, target_color, FADE_DURATION, 
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	fade_tween.start()
+	yield(fade_tween, "tween_completed")
+	emit_signal("done_fading")
+	

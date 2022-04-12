@@ -35,3 +35,8 @@ Sound
   - game
      - win/loss sound effect
      - menu selecting sounds
+
+Ideas
+  - bull gets angrier whenever he breaks china
+     - turns red, game over after x times (wildcard)
+     - gets faster every time

@@ -4,22 +4,25 @@ class_name Player
 const ACCEL = 5.0
 const BRAKING_FRICTION = 0.1
 const TURN_SPEED = 3.0
-const FRICTION = 0.01
+const FRICTION = 0.005
 
 var vel : Vector2
 
 onready var cam = get_node("PlayerCamera")
 onready var sprite = get_node("Sprite")
+onready var run_anim_timer = get_node("RunAnimTimer")
+var is_running : bool
 
-func _draw():
-	#draw_line(Vector2.ZERO, vel.rotated(-self.rotation), Color.green)
-	draw_line(Vector2.ZERO, Vector2.UP * 50, Color.blue)
+#func _draw():
+#	#draw_line(Vector2.ZERO, vel.rotated(-self.rotation), Color.green)
+#	draw_line(Vector2.ZERO, Vector2.UP * 50, Color.blue)
 
 func _ready() -> void:
 	vel = Vector2.ZERO
+	is_running = false
 
 func _process(delta) -> void:
-	update()
+	#update()
 	# sprite always points up
 	sprite.rotation = -rotation
 	# flip the sprite based on rotation
@@ -28,9 +31,8 @@ func _process(delta) -> void:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
-	# determine which sprite frame to show, based on rotation
+	# determine y-coordinate of spritesheet, based on rotation
 	check_rot = abs(check_rot)
-	#print(check_rot)
 	var y_coord
 	if check_rot < 1.0/16.0 * TAU:
 		y_coord = 0
@@ -43,6 +45,14 @@ func _process(delta) -> void:
 	else:
 		y_coord = 4
 	sprite.frame_coords.y = y_coord
+	# determine the x-coordinate of spritesheet, based on speed
+	var speed = vel.length()
+	if speed < 10.0 and is_running:
+		is_running = false
+		sprite.frame_coords.x = 0
+	elif speed >= 10.0 and not is_running:
+		is_running = true
+		do_run_animation()
 
 func _physics_process(delta) -> void:
 	var prev_vel = vel
@@ -76,3 +86,15 @@ func _physics_process(delta) -> void:
 			elif prev_vel.length() > 10:
 				col.bump()
 				cam.add_shake(0.3)
+
+func do_run_animation() -> void:
+	is_running = true
+	while is_running:
+		sprite.frame_coords.x = 1
+		run_anim_timer.start()
+		yield(run_anim_timer, "timeout")
+		if not is_running:
+			return
+		sprite.frame_coords.x = 2
+		run_anim_timer.start()
+		yield(run_anim_timer, "timeout")
