@@ -19,6 +19,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 1 )
 scale = Vector2( 4.5, 4.5 )
 texture = ExtResource( 3 )
 hframes = 3
@@ -41,6 +42,7 @@ script = ExtResource( 2 )
 layer = -3
 
 [node name="BackgroundColorRect" type="ColorRect" parent="PlayerCamera/CanvasLayer"]
+visible = false
 margin_left = -1369.0
 margin_top = -771.0
 margin_right = 1409.0

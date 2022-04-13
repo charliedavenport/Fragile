@@ -40,3 +40,4 @@ Ideas
   - bull gets angrier whenever he breaks china
      - turns red, game over after x times (wildcard)
      - gets faster every time
+  - cake appears in menu level after beating all the levels

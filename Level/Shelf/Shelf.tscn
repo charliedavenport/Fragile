@@ -79,6 +79,20 @@ tracks/2/keys = {
 } ],
 "times": PoolRealArray( 0.75 )
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.75 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit_china_broken"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "bump"

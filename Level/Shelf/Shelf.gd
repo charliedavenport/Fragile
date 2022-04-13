@@ -4,6 +4,8 @@ class_name Shelf
 onready var anim = get_node("AnimationPlayer")
 onready var is_broken := false
 
+signal china_broken
+
 func break_shelf() -> void:
 	if not is_broken:
 		anim.play("break")
@@ -12,6 +14,9 @@ func break_shelf() -> void:
 		anim.play("idle")
 	else:
 		bump()
+
+func emit_china_broken() -> void:
+	emit_signal("china_broken")
 
 func bump() -> void:
 	if anim.current_animation == "bump" or anim.current_animation == "break":

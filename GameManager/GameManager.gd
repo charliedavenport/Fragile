@@ -9,8 +9,10 @@ onready var level = get_node("MainLevel")
 func _ready() -> void:
 	set_player_to_start_pos()
 	level.connect("door_entered", self, "level_transition")
+	player.connect("player_reset", self, "set_player_to_start_pos")
 
 func set_player_to_start_pos() -> void:
+	player.reset_anger()
 	if is_instance_valid(level) and level is Level:
 		player.position = level.player_start.position
 		player.rotation = level.player_start.rotation
@@ -33,3 +35,10 @@ func level_transition(_level_ind : int) -> void:
 	add_child(level)
 	set_player_to_start_pos()
 	player.cam.fade_to_black(false)
+	if _level_ind > 0:
+		var shelves = level.get_shelves()
+		for shelf in shelves:
+			shelf.connect("china_broken", self, "on_china_broken")
+
+func on_china_broken() -> void:
+	player.increase_anger()

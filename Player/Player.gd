@@ -5,6 +5,7 @@ const ACCEL = 5.0
 const BRAKING_FRICTION = 0.1
 const TURN_SPEED = 3.0
 const FRICTION = 0.005
+const MAX_ANGER = 3
 
 var vel : Vector2
 
@@ -13,6 +14,10 @@ onready var sprite = get_node("Sprite")
 onready var run_anim_timer = get_node("RunAnimTimer")
 var is_running : bool
 
+var anger_level : int
+
+signal player_reset
+
 #func _draw():
 #	#draw_line(Vector2.ZERO, vel.rotated(-self.rotation), Color.green)
 #	draw_line(Vector2.ZERO, Vector2.UP * 50, Color.blue)
@@ -20,6 +25,7 @@ var is_running : bool
 func _ready() -> void:
 	vel = Vector2.ZERO
 	is_running = false
+	reset_anger()
 
 func _process(delta) -> void:
 	#update()
@@ -98,3 +104,18 @@ func do_run_animation() -> void:
 		sprite.frame_coords.x = 2
 		run_anim_timer.start()
 		yield(run_anim_timer, "timeout")
+
+func increase_anger() -> void:
+	anger_level += 1
+	var gb_val = lerp(1.0, 0.0, min((1.0/float(MAX_ANGER)) * anger_level, 1.0))
+	sprite.modulate = Color(1.0, gb_val, gb_val, 1.0)
+	if anger_level >= MAX_ANGER:
+		rage_and_reset()
+
+func reset_anger() -> void:
+	anger_level = 0
+	sprite.modulate = Color.white
+
+func rage_and_reset() -> void:
+	# play "rage" animation
+	emit_signal("player_reset")
