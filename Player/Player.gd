@@ -13,6 +13,7 @@ onready var cam = get_node("PlayerCamera")
 onready var sprite = get_node("Sprite")
 onready var run_anim_timer = get_node("RunAnimTimer")
 var is_running : bool
+var has_control : bool
 
 var anger_level : int
 
@@ -26,6 +27,7 @@ func _ready() -> void:
 	vel = Vector2.ZERO
 	is_running = false
 	reset_anger()
+	has_control = true
 
 func _process(delta) -> void:
 	#update()
@@ -62,21 +64,22 @@ func _process(delta) -> void:
 
 func _physics_process(delta) -> void:
 	var prev_vel = vel
-	if Input.is_action_pressed("forward"):
-		vel += -1.0 * transform.y * ACCEL
-	elif Input.is_action_pressed("backward"):
-		vel *= (1.0 - BRAKING_FRICTION)
-	else:
-		vel *= (1.0 - FRICTION)
-	if Input.is_action_pressed("turn_left") or Input.is_action_pressed("turn_right"):
-		var rot_amt = TURN_SPEED * delta
-		if Input.is_action_pressed("turn_left"):
-			rot_amt *= -1
-		# exclusive or - don't do anything if both left and right are pressed 
-		if Input.is_action_pressed("turn_left") and Input.is_action_pressed("turn_right"):
-			rot_amt = 0
-		self.rotate(rot_amt)
-		vel = vel.rotated(rot_amt)
+	if has_control:
+		if Input.is_action_pressed("forward"):
+			vel += -1.0 * transform.y * ACCEL
+		elif Input.is_action_pressed("backward"):
+			vel *= (1.0 - BRAKING_FRICTION)
+		else:
+			vel *= (1.0 - FRICTION)
+		if Input.is_action_pressed("turn_left") or Input.is_action_pressed("turn_right"):
+			var rot_amt = TURN_SPEED * delta
+			if Input.is_action_pressed("turn_left"):
+				rot_amt *= -1
+			# exclusive or - don't do anything if both left and right are pressed 
+			if Input.is_action_pressed("turn_left") and Input.is_action_pressed("turn_right"):
+				rot_amt = 0
+			self.rotate(rot_amt)
+			vel = vel.rotated(rot_amt)
 	vel = move_and_slide(vel)
 	vel = vel.rotated(vel.angle_to(-transform.y))
 	cam.set_zoom(vel.length())
@@ -107,15 +110,19 @@ func do_run_animation() -> void:
 
 func increase_anger() -> void:
 	anger_level += 1
+	if anger_level == MAX_ANGER - 1:
+		cam.flash_background(true)
 	var gb_val = lerp(1.0, 0.0, min((1.0/float(MAX_ANGER)) * anger_level, 1.0))
 	sprite.modulate = Color(1.0, gb_val, gb_val, 1.0)
 	if anger_level >= MAX_ANGER:
 		rage_and_reset()
 
 func reset_anger() -> void:
+	cam.flash_background(false)
 	anger_level = 0
 	sprite.modulate = Color.white
 
 func rage_and_reset() -> void:
+	vel = Vector2.ZERO
 	# play "rage" animation
 	emit_signal("player_reset")

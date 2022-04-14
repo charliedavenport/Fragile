@@ -1,5 +1,7 @@
 extends Camera2D
 
+const BACKGROUND_COLOR = Color("5e3643")
+
 const FOLLOW_SPEED = 0.2
 const MIN_ZOOM = 1.25
 const MAX_ZOOM = 2.0
@@ -19,6 +21,11 @@ var noise_y : float
 onready var target = get_parent()
 var zoom_val : float
 
+const BKG_FLASH_INTERVAL = 0.5
+onready var bkg_color_rect = get_node("CanvasLayer/BackgroundColorRect")
+onready var bkg_flash_tween = get_node("BkgFlashTween")
+var is_flashing : bool
+
 const FADE_DURATION = 0.25
 onready var fade_black_rect = get_node("CanvasLayer2/FadeToBlackColorRect")
 onready var fade_tween = get_node("FadeTween")
@@ -32,6 +39,7 @@ func _ready() -> void:
 	noise.period = 4
 	noise.octaves = 2
 	noise_y = 0.0
+	bkg_color_rect.color = BACKGROUND_COLOR
 
 func _process(delta) -> void:
 	position = position.linear_interpolate(target.position, FOLLOW_SPEED)
@@ -67,4 +75,25 @@ func fade_to_black(_on : bool) -> void:
 	fade_tween.start()
 	yield(fade_tween, "tween_completed")
 	emit_signal("done_fading")
-	
+
+func flash_background(_on : bool) -> void:
+	if _on and not is_flashing:
+		is_flashing = true
+		start_flashing_bkg()
+	elif not _on:
+		is_flashing = false
+		bkg_color_rect.modulate = Color.white
+
+func start_flashing_bkg() -> void:
+	while is_flashing:
+		bkg_flash_tween.interpolate_property(bkg_color_rect, "modulate", Color.white, Color.red, 
+			BKG_FLASH_INTERVAL, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		bkg_flash_tween.start()
+		yield(bkg_flash_tween, "tween_completed")
+		if not is_flashing:
+			flash_background(false)
+			return
+		bkg_flash_tween.interpolate_property(bkg_color_rect, "modulate", Color.red, Color.white, 
+			BKG_FLASH_INTERVAL, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		bkg_flash_tween.start()
+		yield(bkg_flash_tween, "tween_completed")

@@ -5,11 +5,15 @@ const level_01_scene = preload("res://Level/Level_01.tscn")
 
 onready var player = get_node("Player")
 onready var level = get_node("MainLevel")
+onready var gui = get_node("CanvasLayer/GUI")
+
+var curr_level_ind : int
 
 func _ready() -> void:
 	set_player_to_start_pos()
 	level.connect("door_entered", self, "level_transition")
-	player.connect("player_reset", self, "set_player_to_start_pos")
+	player.connect("player_reset", self, "on_player_reset")
+	curr_level_ind = 0
 
 func set_player_to_start_pos() -> void:
 	player.reset_anger()
@@ -18,6 +22,7 @@ func set_player_to_start_pos() -> void:
 		player.rotation = level.player_start.rotation
 
 func level_transition(_level_ind : int) -> void:
+	player.has_control = false
 	player.cam.fade_to_black(true)
 	yield(player.cam, "done_fading")
 	var next_level
@@ -29,6 +34,7 @@ func level_transition(_level_ind : int) -> void:
 		_:
 			printerr("Bad _level_ind argument in GameManager.level_transition(): " + str(_level_ind))
 			return
+	curr_level_ind = _level_ind
 	level.queue_free()
 	level = next_level
 	level.connect("door_entered", self, "level_transition")
@@ -39,6 +45,13 @@ func level_transition(_level_ind : int) -> void:
 		var shelves = level.get_shelves()
 		for shelf in shelves:
 			shelf.connect("china_broken", self, "on_china_broken")
+		gui.show_countdown()
+		yield(gui, "countdown_complete")
+	player.has_control = true
 
 func on_china_broken() -> void:
 	player.increase_anger()
+
+func on_player_reset() -> void:
+	level_transition(curr_level_ind)
+	#player.cam.flash_background(false)

@@ -42,7 +42,6 @@ script = ExtResource( 2 )
 layer = -3
 
 [node name="BackgroundColorRect" type="ColorRect" parent="PlayerCamera/CanvasLayer"]
-visible = false
 margin_left = -1369.0
 margin_top = -771.0
 margin_right = 1409.0
@@ -70,6 +69,8 @@ wait_time = 0.5
 one_shot = true
 
 [node name="FadeTween" type="Tween" parent="PlayerCamera"]
+
+[node name="BkgFlashTween" type="Tween" parent="PlayerCamera"]
 
 [node name="RunAnimTimer" type="Timer" parent="."]
 wait_time = 0.25
