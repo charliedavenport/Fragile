@@ -5,7 +5,7 @@ const ACCEL = 5.0
 const BRAKING_FRICTION = 0.1
 const TURN_SPEED = 3.0
 const FRICTION = 0.005
-const MAX_ANGER = 3
+const MAX_ANGER = 5
 
 var vel : Vector2
 

@@ -5,7 +5,7 @@
 [ext_resource path="res://Level/Shelf/Shelf.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Level/MainLevel.gd" type="Script" id=4]
 [ext_resource path="res://Level/PlayerStart.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Level/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level/Door/Door.tscn" type="PackedScene" id=6]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource( 4 )
@@ -18,7 +18,7 @@ scale = Vector2( 4, 4 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -262161, 4, 196608, -262160, 4, 196609, -262159, 4, 196610, -262156, 4, 0, -262155, 4, 1, -262154, 4, 2, -262151, 4, 0, -262150, 4, 1, -262149, 4, 2, -262146, 4, 0, -262145, 4, 1, -327680, 4, 2, -327677, 4, 0, -327676, 4, 1, -327675, 4, 2, -327672, 4, 0, -327671, 4, 1, -327670, 4, 2, -327667, 4, 0, -327666, 4, 1, -327665, 4, 2, -196625, 4, 262144, -196624, 4, 262145, -196623, 4, 262146, -196620, 4, 65536, -196619, 4, 65537, -196618, 4, 65538, -196615, 4, 65536, -196614, 4, 65537, -196613, 4, 65538, -196610, 4, 65536, -196609, 4, 65537, -262144, 4, 65538, -262141, 4, 65536, -262140, 4, 65537, -262139, 4, 65538, -262136, 4, 65536, -262135, 4, 65537, -262134, 4, 65538, -262131, 4, 65536, -262130, 4, 65537, -262129, 4, 65538, -131089, 4, 327680, -131088, 4, 327681, -131087, 4, 327682, -131084, 4, 131072, -131083, 4, 131073, -131082, 4, 131074, -131079, 4, 131072, -131078, 4, 131073, -131077, 4, 131074, -131074, 4, 131072, -131073, 4, 131073, -196608, 4, 131074, -196605, 4, 131072, -196604, 4, 131073, -196603, 4, 131074, -196600, 4, 131072, -196599, 4, 131073, -196598, 4, 131074, -196595, 4, 131072, -196594, 4, 131073, -196593, 4, 131074 )
+tile_data = PoolIntArray( -131087, 4, 327682 )
 
 [node name="FloorsAndWalls" type="TileMap" parent="."]
 scale = Vector2( 4, 4 )
@@ -132,5 +132,32 @@ position = Vector2( 336, 448 )
 [node name="Shelf9" parent="Shelves" instance=ExtResource( 3 )]
 position = Vector2( -1120, 512 )
 
-[node name="Door_01" parent="." instance=ExtResource( 6 )]
-position = Vector2( -991, -202 )
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door_01" parent="Doors" instance=ExtResource( 6 )]
+position = Vector2( -992, -192 )
+index = 1
+
+[node name="Door_02" parent="Doors" instance=ExtResource( 6 )]
+position = Vector2( -672, -192 )
+index = 2
+
+[node name="Door_03" parent="Doors" instance=ExtResource( 6 )]
+position = Vector2( -352, -192 )
+index = 3
+
+[node name="Door_04" parent="Doors" instance=ExtResource( 6 )]
+position = Vector2( -32, -192 )
+index = 4
+
+[node name="Door_05" parent="Doors" instance=ExtResource( 6 )]
+position = Vector2( 288, -192 )
+index = 5
+
+[node name="Door_06" parent="Doors" instance=ExtResource( 6 )]
+position = Vector2( 608, -192 )
+index = 6
+
+[node name="Door_07" parent="Doors" instance=ExtResource( 6 )]
+position = Vector2( 928, -192 )
+index = 7

@@ -13,3 +13,4 @@ func get_shelves() -> Array:
 			if child is Shelf:
 				arr.append(child)
 	return arr
+

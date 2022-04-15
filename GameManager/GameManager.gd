@@ -2,18 +2,23 @@ extends Node
 
 const main_level_scene = preload("res://Level/MainLevel.tscn")
 const level_01_scene = preload("res://Level/Level_01.tscn")
+const level_02_scene = preload("res://Level/Level_02.tscn")
+const level_03_scene = preload("res://Level/Level_03.tscn")
 
 onready var player = get_node("Player")
 onready var level = get_node("MainLevel")
 onready var gui = get_node("CanvasLayer/GUI")
 
 var curr_level_ind : int
+var main_level_doors : Array
+var levels_completed : int
 
 func _ready() -> void:
 	set_player_to_start_pos()
-	level.connect("door_entered", self, "level_transition")
+	level.connect("door_entered", self, "on_door_entered")
 	player.connect("player_reset", self, "on_player_reset")
 	curr_level_ind = 0
+	levels_completed = 0
 
 func set_player_to_start_pos() -> void:
 	player.reset_anger()
@@ -31,13 +36,18 @@ func level_transition(_level_ind : int) -> void:
 			next_level = main_level_scene.instance()
 		1:
 			next_level = level_01_scene.instance()
+		2: 
+			next_level = level_02_scene.instance()
+		3:
+			next_level = level_03_scene.instance()
 		_:
 			printerr("Bad _level_ind argument in GameManager.level_transition(): " + str(_level_ind))
-			return
+			next_level = main_level_scene.instance()
+			_level_ind = 0
 	curr_level_ind = _level_ind
 	level.queue_free()
 	level = next_level
-	level.connect("door_entered", self, "level_transition")
+	level.connect("door_entered", self, "on_door_entered")
 	add_child(level)
 	set_player_to_start_pos()
 	player.cam.fade_to_black(false)
@@ -47,11 +57,20 @@ func level_transition(_level_ind : int) -> void:
 			shelf.connect("china_broken", self, "on_china_broken")
 		gui.show_countdown()
 		yield(gui, "countdown_complete")
+	else:
+		level.set_open_doors(levels_completed)
+		level.current_level = levels_completed + 1
 	player.has_control = true
+	print(curr_level_ind)
+
+func on_door_entered(_ind) -> void:
+	if curr_level_ind == levels_completed + 1:
+		levels_completed += 1
+#		print("levels_completed = " + str(levels_completed))
+	level_transition(_ind)
 
 func on_china_broken() -> void:
 	player.increase_anger()
 
 func on_player_reset() -> void:
 	level_transition(curr_level_ind)
-	#player.cam.flash_background(false)
