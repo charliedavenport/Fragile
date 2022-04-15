@@ -7,6 +7,10 @@ const TURN_SPEED = 3.0
 const FRICTION = 0.005
 const MAX_ANGER = 5
 
+enum State {IDLE, RUNNING, STOPPING}
+
+var curr_state : int
+
 var vel : Vector2
 
 onready var cam = get_node("PlayerCamera")
@@ -25,7 +29,7 @@ signal player_reset
 
 func _ready() -> void:
 	vel = Vector2.ZERO
-	is_running = false
+	set_state(State.IDLE)
 	reset_anger()
 	has_control = true
 
@@ -42,33 +46,41 @@ func _process(delta) -> void:
 	# determine y-coordinate of spritesheet, based on rotation
 	check_rot = abs(check_rot)
 	var y_coord
-	if check_rot < 1.0/16.0 * TAU:
+	if check_rot < 1.0/32.0 * TAU:
 		y_coord = 0
-	elif check_rot < 3.0/16.0 * TAU:
+	elif check_rot < 3.0/32.0 * TAU:
 		y_coord = 1
-	elif check_rot < 5.0/16.0 * TAU:
+	elif check_rot < 5.0/32.0 * TAU:
 		y_coord = 2
-	elif check_rot < 7.0/16.0 * TAU:
+	elif check_rot < 7.0/32.0 * TAU:
 		y_coord = 3
-	else:
+	elif check_rot < 9.0/32.0 * TAU:
 		y_coord = 4
+	elif check_rot < 11.0/32.0 * TAU:
+		y_coord = 5
+	elif check_rot < 13.0/32.0 * TAU:
+		y_coord = 6
+	elif check_rot < 15.0/32.0 * TAU:
+		y_coord = 7
+	else:
+		y_coord = 8
 	sprite.frame_coords.y = y_coord
 	# determine the x-coordinate of spritesheet, based on speed
 	var speed = vel.length()
-	if speed < 10.0 and is_running:
-		is_running = false
-		sprite.frame_coords.x = 0
-	elif speed >= 10.0 and not is_running:
-		is_running = true
-		do_run_animation()
+	if speed < 10.0 and curr_state != State.IDLE:
+		set_state(State.IDLE)
+	elif Input.is_action_pressed("backward") and curr_state != State.IDLE:
+		set_state(State.STOPPING)
+	elif speed >= 10.0 and curr_state != State.RUNNING:
+		set_state(State.RUNNING)
 
 func _physics_process(delta) -> void:
 	var prev_vel = vel
 	if has_control:
-		if Input.is_action_pressed("forward"):
-			vel += -1.0 * transform.y * ACCEL
-		elif Input.is_action_pressed("backward"):
+		if Input.is_action_pressed("backward"):
 			vel *= (1.0 - BRAKING_FRICTION)
+		elif Input.is_action_pressed("forward"):
+			vel += -1.0 * transform.y * ACCEL
 		else:
 			vel *= (1.0 - FRICTION)
 		if Input.is_action_pressed("turn_left") or Input.is_action_pressed("turn_right"):
@@ -84,7 +96,6 @@ func _physics_process(delta) -> void:
 	vel = vel.rotated(vel.angle_to(-transform.y))
 	cam.set_zoom(vel.length())
 	# check for collision with shelf
-	#print(prev_vel.length())
 	var slides = get_slide_count()
 	for i in range(slides):
 		var col = get_slide_collision(i).collider
@@ -96,13 +107,31 @@ func _physics_process(delta) -> void:
 				col.bump()
 				cam.add_shake(0.3)
 
+func set_state(_value : int) -> void:
+	var prev_state = curr_state
+	curr_state = _value
+	match _value:
+		State.IDLE:
+			do_idle_animation()
+		State.RUNNING:
+			do_run_animation()
+		State.STOPPING:
+			do_stopping_animation()
+		_:
+			pass
+
+func do_stopping_animation() -> void:
+	sprite.frame_coords.x = 3
+
+func do_idle_animation() -> void:
+	sprite.frame_coords.x = 0
+
 func do_run_animation() -> void:
-	is_running = true
-	while is_running:
+	while curr_state == State.RUNNING:
 		sprite.frame_coords.x = 1
 		run_anim_timer.start()
 		yield(run_anim_timer, "timeout")
-		if not is_running:
+		if not curr_state == State.RUNNING:
 			return
 		sprite.frame_coords.x = 2
 		run_anim_timer.start()
@@ -125,4 +154,5 @@ func reset_anger() -> void:
 func rage_and_reset() -> void:
 	vel = Vector2.ZERO
 	# play "rage" animation
+	set_state(State.IDLE)
 	emit_signal("player_reset")

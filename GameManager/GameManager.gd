@@ -28,6 +28,8 @@ func set_player_to_start_pos() -> void:
 
 func level_transition(_level_ind : int) -> void:
 	player.has_control = false
+	player.vel = Vector2.ZERO
+	player.set_state(Player.State.IDLE)
 	player.cam.fade_to_black(true)
 	yield(player.cam, "done_fading")
 	var next_level
@@ -61,7 +63,6 @@ func level_transition(_level_ind : int) -> void:
 		level.set_open_doors(levels_completed)
 		level.current_level = levels_completed + 1
 	player.has_control = true
-	print(curr_level_ind)
 
 func on_door_entered(_ind) -> void:
 	if curr_level_ind == levels_completed + 1:

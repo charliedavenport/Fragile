@@ -1,10 +1,16 @@
 extends StaticBody2D
 class_name Shelf
 
+export var is_occluding := false
+
 onready var anim = get_node("AnimationPlayer")
 onready var is_broken := false
+onready var occluder = get_node("LightOccluder2D")
 
 signal china_broken
+
+#func _ready() -> void:
+#	occluder.
 
 func break_shelf() -> void:
 	if not is_broken:
