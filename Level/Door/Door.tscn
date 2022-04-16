@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Level/Door/Door.gd" type="Script" id=1]
 [ext_resource path="res://Level/Door/door_closed.png" type="Texture" id=2]
 [ext_resource path="res://Level/Candle/light.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/minecraft/Minecraft.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 66.0076
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 12, -40, -16, -64, 36, -64, 36, -76, -24, -76, -24, 0, 8, 32, 12, 32 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 36
+font_data = ExtResource( 4 )
 
 [node name="Door" type="Area2D"]
 collision_layer = 2
@@ -33,3 +38,20 @@ shadow_enabled = true
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
 occluder = SubResource( 2 )
+
+[node name="BestTime" type="Control" parent="."]
+margin_left = -120.0
+margin_top = -216.0
+margin_right = 120.0
+margin_bottom = -132.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BestTime"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "Best Time:
+00.000"
+align = 1

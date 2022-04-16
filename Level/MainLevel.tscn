@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Level/Decor_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Level/FloorWall_tileset.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Level/MainLevel.gd" type="Script" id=4]
 [ext_resource path="res://Level/PlayerStart.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Level/Door/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level/Vase/Vase.tscn" type="PackedScene" id=7]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,7 +21,7 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 2
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -131087, 4, 327682 )
+tile_data = PoolIntArray( -131087, 4, 327682, -65554, 1, 0, -65553, 1, 1, -65552, 1, 1, -65551, 1, 1, -65550, 1, 1, -65549, 1, 1, -65548, 1, 1, -65547, 1, 1, -65546, 1, 1, -65545, 1, 2, -65544, 1, 196608, -65543, 1, 196609, -65542, 1, 196609, -65541, 1, 196609, -65540, 1, 196609, -65539, 1, 196609, -65538, 1, 196609, -65537, 1, 196609, -131072, 1, 196609, -131071, 1, 196609, -131070, 1, 196609, -131069, 1, 196609, -131068, 1, 196609, -131067, 1, 196609, -131066, 1, 196610, -131065, 1, 393216, -131064, 1, 393217, -131063, 1, 393217, -131062, 1, 393217, -131061, 1, 393217, -131060, 1, 393217, -131059, 1, 393217, -131058, 1, 393217, -131057, 1, 393217, -131056, 1, 393218, -18, 1, 65536, -17, 1, 65537, -16, 1, 65537, -15, 1, 65537, -14, 1, 65537, -13, 1, 65537, -12, 1, 65537, -11, 1, 65537, -10, 1, 65537, -9, 1, 65538, -8, 1, 262144, -7, 1, 262145, -6, 1, 262145, -5, 1, 262145, -4, 1, 262145, -3, 1, 262145, -2, 1, 262145, -1, 1, 262145, -65536, 1, 262145, -65535, 1, 262145, -65534, 1, 262145, -65533, 1, 262145, -65532, 1, 262145, -65531, 1, 262145, -65530, 1, 262146, -65529, 1, 458752, -65528, 1, 458753, -65527, 1, 458753, -65526, 1, 458753, -65525, 1, 458753, -65524, 1, 458753, -65523, 1, 458753, -65522, 1, 458753, -65521, 1, 458753, -65520, 1, 458754, 65518, 1, 65536, 65519, 1, 65537, 65520, 1, 65537, 65521, 1, 65537, 65522, 1, 65537, 65523, 1, 65537, 65524, 1, 65537, 65525, 1, 65537, 65526, 1, 65537, 65527, 1, 65538, 65528, 1, 262144, 65529, 1, 262145, 65530, 1, 262145, 65531, 1, 262145, 65532, 1, 262145, 65533, 1, 262145, 65534, 1, 262145, 65535, 1, 262145, 0, 1, 262145, 1, 1, 262145, 2, 1, 262145, 3, 1, 262145, 4, 1, 262145, 5, 1, 262145, 6, 1, 262146, 7, 1, 458752, 8, 1, 458753, 9, 1, 458753, 10, 1, 458753, 11, 1, 458753, 12, 1, 458753, 13, 1, 458753, 14, 1, 458753, 15, 1, 458753, 16, 1, 458754, 131054, 1, 65536, 131055, 1, 65537, 131056, 1, 65537, 131057, 1, 65537, 131058, 1, 65537, 131059, 1, 65537, 131060, 1, 65537, 131061, 1, 65537, 131062, 1, 65537, 131063, 1, 65538, 131064, 1, 262144, 131065, 1, 262145, 131066, 1, 262145, 131067, 1, 262145, 131068, 1, 262145, 131069, 1, 262145, 131070, 1, 262145, 131071, 1, 262145, 65536, 1, 262145, 65537, 1, 262145, 65538, 1, 262145, 65539, 1, 262145, 65540, 1, 262145, 65541, 1, 262145, 65542, 1, 262146, 65543, 1, 458752, 65544, 1, 458753, 65545, 1, 458753, 65546, 1, 458753, 65547, 1, 458753, 65548, 1, 458753, 65549, 1, 458753, 65550, 1, 458753, 65551, 1, 458753, 65552, 1, 458754, 196590, 1, 131072, 196591, 1, 131073, 196592, 1, 131073, 196593, 1, 131073, 196594, 1, 131073, 196595, 1, 131073, 196596, 1, 131073, 196597, 1, 131073, 196598, 1, 131073, 196599, 1, 131074, 196600, 1, 327680, 196601, 1, 327681, 196602, 1, 327681, 196603, 1, 327681, 196604, 1, 327681, 196605, 1, 327681, 196606, 1, 327681, 196607, 1, 327681, 131072, 1, 327681, 131073, 1, 327681, 131074, 1, 327681, 131075, 1, 327681, 131076, 1, 327681, 131077, 1, 327681, 131078, 1, 327682, 131079, 1, 524288, 131080, 1, 524289, 131081, 1, 524289, 131082, 1, 524289, 131083, 1, 524289, 131084, 1, 524289, 131085, 1, 524289, 131086, 1, 524289, 131087, 1, 524289, 131088, 1, 524290 )
 
 [node name="FloorsAndWalls" type="TileMap" parent="."]
 scale = Vector2( 4, 4 )
@@ -126,6 +127,92 @@ position = Vector2( 336, 448 )
 
 [node name="Shelf9" parent="Shelves" instance=ExtResource( 3 )]
 position = Vector2( -1120, 512 )
+
+[node name="Vases" type="Node2D" parent="."]
+
+[node name="Vase" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( -272, 224 )
+
+[node name="Vase5" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( -1168, 144 )
+
+[node name="Vase2" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( -64, 256 )
+
+[node name="Vase3" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 512, 176 )
+
+[node name="Vase4" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 432, 240 )
+
+[node name="Vase6" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 944, 192 )
+
+[node name="Vase7" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 1104, 304 )
+
+[node name="Vase8" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 1040, 144 )
+
+[node name="Vase15" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 1072, 192 )
+
+[node name="Vase10" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 832, 272 )
+
+[node name="Vase11" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 912, 64 )
+
+[node name="Vase20" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 560, 112 )
+
+[node name="Vase21" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 560, 112 )
+
+[node name="Vase12" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 1120, 32 )
+
+[node name="Vase13" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 1008, -16 )
+
+[node name="Vase14" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 992, 48 )
+
+[node name="Vase16" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 624, 144 )
+
+[node name="Vase17" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 848, 80 )
+
+[node name="Vase18" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 736, 32 )
+
+[node name="Vase19" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 720, 96 )
+
+[node name="Vase22" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 96, 400 )
+
+[node name="Vase23" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 320, 320 )
+
+[node name="Vase26" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 432, 96 )
+
+[node name="Vase27" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 400, 144 )
+
+[node name="Vase28" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 304, 192 )
+
+[node name="Vase24" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 208, 288 )
+
+[node name="Vase25" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 192, 352 )
+
+[node name="Vase9" parent="Vases" instance=ExtResource( 7 )]
+position = Vector2( 800, 112 )
 
 [node name="Doors" type="Node2D" parent="."]
 

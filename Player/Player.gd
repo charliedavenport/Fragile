@@ -99,10 +99,12 @@ func _physics_process(delta) -> void:
 	var slides = get_slide_count()
 	for i in range(slides):
 		var col = get_slide_collision(i).collider
-		if col is Shelf:
+		if col is Shelf or col is Vase:
 			if prev_vel.length() > 400:
-				col.break_shelf()
+				col.break_china()
 				cam.add_shake(0.5)
+				if col is Vase:
+					vel = prev_vel
 			elif prev_vel.length() > 10:
 				col.bump()
 				cam.add_shake(0.3)

@@ -12,7 +12,7 @@ signal china_broken
 #func _ready() -> void:
 #	occluder.
 
-func break_shelf() -> void:
+func break_china() -> void:
 	if not is_broken:
 		anim.play("break")
 		is_broken = true

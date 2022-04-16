@@ -31,3 +31,15 @@ func set_open_doors(_levels_completed) -> void:
 			d.open()
 			if d.index <= _levels_completed:
 				d.light.enabled = false
+
+func get_door_by_index(_ind : int):
+	for d in doors:
+		if d.index == _ind:
+			return d
+	return null
+
+func set_best_times(_best_times : Array) -> void:
+	for ind in range(_best_times.size()):
+		var door = get_door_by_index(ind+1)
+		if door:
+			door.set_best_time(_best_times[ind])

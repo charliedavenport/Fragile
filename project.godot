@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Shelf",
 "language": "GDScript",
 "path": "res://Level/Shelf/Shelf.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Vase",
+"language": "GDScript",
+"path": "res://Level/Vase/Vase.gd"
 } ]
 _global_script_class_icons={
 "Door": "",
 "Level": "",
 "Player": "",
-"Shelf": ""
+"Shelf": "",
+"Vase": ""
 }
 
 [application]

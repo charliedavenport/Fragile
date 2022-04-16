@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Level/PlayerStart.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level/RegularLevel.gd" type="Script" id=2]
+[ext_resource path="res://Level/Vase/Vase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Level/Decor_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://Level/Shelf/Shelf.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Level/FloorWall_tileset.tres" type="TileSet" id=7]
@@ -44,21 +45,6 @@ position = Vector2( 1592, 120 )
 [node name="Shelf5" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 1560, 176 )
 
-[node name="Shelf6" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 1984, 536 )
-
-[node name="Shelf7" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 1960, 584 )
-
-[node name="Shelf8" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 1976, 688 )
-
-[node name="Shelf9" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 1936, 776 )
-
-[node name="Shelf10" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 1976, 896 )
-
 [node name="Shelf11" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 1688, 1232 )
 
@@ -85,9 +71,6 @@ position = Vector2( 1648, 1736 )
 
 [node name="Shelf19" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 1544, 1792 )
-
-[node name="Shelf45" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 1368, 1984 )
 
 [node name="Shelf20" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 1784, 2288 )
@@ -143,26 +126,64 @@ position = Vector2( -120, 1136 )
 [node name="Shelf37" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( -128, 1200 )
 
-[node name="Shelf38" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 320, 960 )
-
-[node name="Shelf40" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 304, 1016 )
-
-[node name="Shelf44" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 320, 1096 )
-
 [node name="Shelf39" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( -120, 1296 )
-
-[node name="Shelf41" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -112, 1384 )
 
 [node name="Shelf42" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( -128, 1456 )
 
 [node name="Shelf43" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( -104, 1560 )
+
+[node name="Vases" type="Node2D" parent="."]
+
+[node name="Vase" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -144, 312 )
+
+[node name="Vase4" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 1968, 504 )
+
+[node name="Vase7" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 1992, 712 )
+
+[node name="Vase10" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 1944, 1968 )
+
+[node name="Vase11" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 1328, 1976 )
+
+[node name="Vase12" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 1448, 1920 )
+
+[node name="Vase13" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 1448, 1920 )
+
+[node name="Vase14" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 352, 1032 )
+
+[node name="Vase18" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 344, 1312 )
+
+[node name="Vase19" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -56, 1336 )
+
+[node name="Vase20" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -8, 1408 )
+
+[node name="Vase21" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -88, 1656 )
+
+[node name="Vase22" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -16, 1720 )
+
+[node name="Vase23" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 688, 2416 )
+
+[node name="Vase2" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 320, 312 )
+
+[node name="Vase3" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 320, 312 )
 
 [node name="Candles" type="Node2D" parent="."]
 

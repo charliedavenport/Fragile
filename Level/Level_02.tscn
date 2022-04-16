@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Level/PlayerStart.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level/RegularLevel.gd" type="Script" id=2]
+[ext_resource path="res://Level/Vase/Vase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Level/Decor_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://Level/Shelf/Shelf.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Level/Candle/Candle.tscn" type="PackedScene" id=6]
@@ -32,17 +33,11 @@ tile_data = PoolIntArray( 5, 3, 1, 6, 3, 2, 7, 3, 2, 8, 3, 2, 9, 3, 3, 65537, 3,
 
 [node name="Shelves" type="Node2D" parent="."]
 
-[node name="Shelf" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 320, 1536 )
-
 [node name="Shelf32" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 192, 256 )
 
 [node name="Shelf33" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 448, 192 )
-
-[node name="Shelf2" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 656, 1392 )
 
 [node name="Shelf3" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 1280, 1440 )
@@ -119,33 +114,6 @@ position = Vector2( -56, 3200 )
 [node name="Shelf63" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 552, 3200 )
 
-[node name="Shelf64" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -320, 1984 )
-
-[node name="Shelf65" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 8, 2096 )
-
-[node name="Shelf66" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 144, 2064 )
-
-[node name="Shelf67" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -288, 2192 )
-
-[node name="Shelf68" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -104, 2048 )
-
-[node name="Shelf69" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 344, 2064 )
-
-[node name="Shelf70" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 392, 2112 )
-
-[node name="Shelf71" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 320, 2168 )
-
-[node name="Shelf72" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 512, 2144 )
-
 [node name="Shelf7" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 1728, 1600 )
 
@@ -175,30 +143,6 @@ position = Vector2( 576, 2880 )
 
 [node name="Shelf16" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( 384, 2816 )
-
-[node name="Shelf22" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 64, 2176 )
-
-[node name="Shelf23" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( 192, 2112 )
-
-[node name="Shelf24" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -448, 1984 )
-
-[node name="Shelf25" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -256, 2048 )
-
-[node name="Shelf26" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -384, 2048 )
-
-[node name="Shelf27" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -128, 2112 )
-
-[node name="Shelf28" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -320, 2240 )
-
-[node name="Shelf29" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -448, 2176 )
 
 [node name="Shelf30" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( -576, 2112 )
@@ -233,14 +177,94 @@ position = Vector2( -1152, 2424 )
 [node name="Shelf37" parent="Shelves" instance=ExtResource( 5 )]
 position = Vector2( -1216, 2496 )
 
-[node name="Shelf38" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -1216, 3008 )
+[node name="Vases" type="Node2D" parent="."]
 
-[node name="Shelf39" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -832, 3072 )
+[node name="Vase" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -456, 1960 )
 
-[node name="Shelf40" parent="Shelves" instance=ExtResource( 5 )]
-position = Vector2( -448, 3136 )
+[node name="Vase2" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -336, 2008 )
+
+[node name="Vase3" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -224, 1984 )
+
+[node name="Vase4" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -136, 2016 )
+
+[node name="Vase5" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -40, 2048 )
+
+[node name="Vase6" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 56, 1992 )
+
+[node name="Vase7" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 176, 2040 )
+
+[node name="Vase8" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 320, 2048 )
+
+[node name="Vase9" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 240, 2080 )
+
+[node name="Vase10" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 96, 2080 )
+
+[node name="Vase11" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -104, 2096 )
+
+[node name="Vase12" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -272, 2088 )
+
+[node name="Vase13" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -408, 2040 )
+
+[node name="Vase14" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -472, 2104 )
+
+[node name="Vase15" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -424, 2136 )
+
+[node name="Vase16" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -336, 2168 )
+
+[node name="Vase22" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -568, 2424 )
+
+[node name="Vase23" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 592, 2424 )
+
+[node name="Vase24" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -464, 3120 )
+
+[node name="Vase29" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 1272, 2824 )
+
+[node name="Vase25" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -856, 3056 )
+
+[node name="Vase26" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -1240, 2992 )
+
+[node name="Vase17" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( -184, 2160 )
+
+[node name="Vase18" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 24, 2160 )
+
+[node name="Vase19" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 160, 2144 )
+
+[node name="Vase20" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 408, 2112 )
+
+[node name="Vase21" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 496, 2064 )
+
+[node name="Vase27" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 304, 1520 )
+
+[node name="Vase28" parent="Vases" instance=ExtResource( 3 )]
+position = Vector2( 640, 1408 )
 
 [node name="Candles" type="Node2D" parent="."]
 

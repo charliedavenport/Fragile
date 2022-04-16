@@ -13,6 +13,7 @@ var curr_level_ind : int
 var main_level_doors : Array
 var levels_completed : int
 
+var best_times : Array
 var curr_level_time : float # seconds
 var start_os_time : int # measured in milisecond "ticks", so int instead of float
 var is_timing_player : bool
@@ -24,6 +25,7 @@ func _ready() -> void:
 	curr_level_ind = 0
 	levels_completed = 0
 	is_timing_player = false
+	best_times = []
 
 func set_player_to_start_pos() -> void:
 	player.reset_anger()
@@ -32,6 +34,8 @@ func set_player_to_start_pos() -> void:
 		player.rotation = level.player_start.rotation
 
 func level_transition(_level_ind : int) -> void:
+	is_timing_player = false
+	curr_level_time = 0.0
 	player.has_control = false
 	player.vel = Vector2.ZERO
 	player.set_state(Player.State.IDLE)
@@ -59,14 +63,15 @@ func level_transition(_level_ind : int) -> void:
 	set_player_to_start_pos()
 	player.cam.fade_to_black(false)
 	if _level_ind > 0:
-		var shelves = level.get_shelves()
-		for shelf in shelves:
-			shelf.connect("china_broken", self, "on_china_broken")
+		var china = level.get_china()
+		for c in china:
+			c.connect("china_broken", self, "on_china_broken")
 		gui.show_countdown()
 		yield(gui, "countdown_complete")
 		start_timing_player()
 	else:
 		level.set_open_doors(levels_completed)
+		level.set_best_times(best_times)
 		level.current_level = levels_completed + 1
 	player.has_control = true
 
@@ -84,9 +89,20 @@ func start_timing_player() -> void:
 		yield(get_tree(), "idle_frame")
 	gui.show_playertimer(false)
 
+func check_best_time() -> void:
+	if curr_level_ind == best_times.size() + 1:
+		best_times.append(curr_level_time)
+	elif curr_level_ind <= best_times.size():
+		var best_t_ind = curr_level_ind - 1
+		if curr_level_time < best_times[best_t_ind]:
+			best_times[best_t_ind] = curr_level_time
+			print(best_times)
+	
+
 func on_door_entered(_ind) -> void:
 	if curr_level_ind > 0:
 		is_timing_player = false
+		check_best_time()
 	if curr_level_ind == levels_completed + 1:
 		levels_completed += 1
 #		print("levels_completed = " + str(levels_completed))
