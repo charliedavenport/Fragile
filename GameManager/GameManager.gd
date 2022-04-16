@@ -4,6 +4,7 @@ const main_level_scene = preload("res://Level/MainLevel.tscn")
 const level_01_scene = preload("res://Level/Level_01.tscn")
 const level_02_scene = preload("res://Level/Level_02.tscn")
 const level_03_scene = preload("res://Level/Level_03.tscn")
+const level_04_scene = preload("res://Level/Level_04.tscn")
 
 onready var player = get_node("Player")
 onready var level = get_node("MainLevel")
@@ -51,6 +52,8 @@ func level_transition(_level_ind : int) -> void:
 			next_level = level_02_scene.instance()
 		3:
 			next_level = level_03_scene.instance()
+		4: 
+			next_level = level_04_scene.instance()
 		_:
 			printerr("Bad _level_ind argument in GameManager.level_transition(): " + str(_level_ind))
 			next_level = main_level_scene.instance()
