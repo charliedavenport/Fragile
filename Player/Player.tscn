@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/bull_spritesheet.png" type="Texture" id=3]
 
 [sub_resource type="OccluderPolygon2D" id=29]
-polygon = PoolVector2Array( -33.3333, -9.62963, -17.037, -23.7037, 20, -24.4444, 32.5926, -10.3704, 29.6296, 13.3333, 18.5185, 21.4815, -20, 21.4815, -33.3333, 13.3333 )
+polygon = PoolVector2Array( -23.7037, -8.88889, -11.8519, -20.7407, 11.8519, -20.7407, 23.7037, -8.88889, 23.7037, 8.88889, 11.8519, 20.7407, -11.8519, 20.7407, -23.7037, 8.88889 )
 
 [sub_resource type="CircleShape2D" id=28]
 radius = 51.0098

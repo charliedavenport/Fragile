@@ -5,6 +5,7 @@ const COUNTDOWN_INTERVAL = 0.5
 var is_doing_countdown : bool
 onready var countdown_label = get_node("Countdown/Label")
 onready var countdown_timer = get_node("Countdown/CountdownTimer")
+onready var timer_label = get_node("PlayerTimer/Label")
 
 signal countdown_complete
 
@@ -13,6 +14,7 @@ func _ready() -> void:
 	countdown_label.visible = false
 	countdown_timer.wait_time = COUNTDOWN_INTERVAL
 	countdown_timer.one_shot = true
+	show_playertimer(false)
 
 func show_countdown() -> void:
 	if is_doing_countdown:
@@ -32,4 +34,9 @@ func show_countdown() -> void:
 	yield(countdown_timer, "timeout")
 	countdown_label.visible = false
 	is_doing_countdown = false
-	
+
+func show_playertimer(_on) -> void:
+	timer_label.visible = _on
+
+func set_playertimer(_time : float) -> void:
+	timer_label.text = "%6.4f" % _time

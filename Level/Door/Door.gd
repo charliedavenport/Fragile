@@ -7,6 +7,8 @@ export var index : int
 
 onready var sprite = get_node("Sprite")
 onready var collision = get_node("CollisionShape2D")
+onready var light = get_node("DoorLight")
+onready var occluder = get_node("LightOccluder2D")
 
 var is_open : bool
 
@@ -17,5 +19,7 @@ func _ready():
 	collision.disabled = true
 
 func open() -> void:
+	light.enabled = true
+	occluder.visible = true
 	sprite.texture = open_sprite
 	collision.disabled = false

@@ -29,3 +29,5 @@ func set_open_doors(_levels_completed) -> void:
 	for d in doors:
 		if d.index <= (_levels_completed + 1):
 			d.open()
+			if d.index <= _levels_completed:
+				d.light.enabled = false

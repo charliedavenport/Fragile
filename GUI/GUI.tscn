@@ -1,11 +1,61 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/minecraft/Minecraft.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 2 )
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Countdown" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -232.0
+margin_top = -184.0
+margin_right = 232.0
+margin_bottom = -48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Countdown"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "3..."
+align = 1
+valign = 1
+
+[node name="CountdownTimer" type="Timer" parent="Countdown"]
+
+[node name="PlayerTimer" type="Control" parent="."]
+margin_right = 408.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PlayerTimer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 96.0
+custom_fonts/font = SubResource( 2 )
+text = "00:00.00"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

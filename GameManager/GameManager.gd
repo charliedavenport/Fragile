@@ -13,12 +13,17 @@ var curr_level_ind : int
 var main_level_doors : Array
 var levels_completed : int
 
+var curr_level_time : float # seconds
+var start_os_time : int # measured in milisecond "ticks", so int instead of float
+var is_timing_player : bool
+
 func _ready() -> void:
 	set_player_to_start_pos()
 	level.connect("door_entered", self, "on_door_entered")
 	player.connect("player_reset", self, "on_player_reset")
 	curr_level_ind = 0
 	levels_completed = 0
+	is_timing_player = false
 
 func set_player_to_start_pos() -> void:
 	player.reset_anger()
@@ -59,12 +64,29 @@ func level_transition(_level_ind : int) -> void:
 			shelf.connect("china_broken", self, "on_china_broken")
 		gui.show_countdown()
 		yield(gui, "countdown_complete")
+		start_timing_player()
 	else:
 		level.set_open_doors(levels_completed)
 		level.current_level = levels_completed + 1
 	player.has_control = true
 
+func start_timing_player() -> void:
+#	if is_timing_player:
+#		printerr("Can't start timing player when is_timing_player is already true. ")
+#		return
+	is_timing_player = true
+	curr_level_time = 0.0
+	start_os_time = OS.get_ticks_msec()
+	gui.show_playertimer(true)
+	while is_timing_player:
+		curr_level_time = float(OS.get_ticks_msec() - start_os_time) / 1000.0
+		gui.set_playertimer(curr_level_time)
+		yield(get_tree(), "idle_frame")
+	gui.show_playertimer(false)
+
 func on_door_entered(_ind) -> void:
+	if curr_level_ind > 0:
+		is_timing_player = false
 	if curr_level_ind == levels_completed + 1:
 		levels_completed += 1
 #		print("levels_completed = " + str(levels_completed))
