@@ -22,6 +22,7 @@ var has_control : bool
 var anger_level : int
 
 signal player_reset
+signal exit_menu
 
 #func _draw():
 #	#draw_line(Vector2.ZERO, vel.rotated(-self.rotation), Color.green)
@@ -34,6 +35,10 @@ func _ready() -> void:
 	has_control = true
 
 func _process(delta) -> void:
+	if Input.is_action_just_pressed("exit_menu"):
+		emit_signal("exit_menu")
+	elif Input.is_action_just_pressed("reset"):
+		emit_signal("player_reset")
 	#update()
 	# sprite always points up
 	sprite.rotation = -rotation

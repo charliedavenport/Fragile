@@ -5,14 +5,21 @@ const level_01_scene = preload("res://Level/Level_01.tscn")
 const level_02_scene = preload("res://Level/Level_02.tscn")
 const level_03_scene = preload("res://Level/Level_03.tscn")
 const level_04_scene = preload("res://Level/Level_04.tscn")
+const level_05_scene = preload("res://Level/Level_05.tscn")
+const main_level_end_scene = preload("res://Level/MainLevel_Endgame.tscn")
+
+const regular_level_music = preload("res://Music/bull-rush.wav")
+const menu_music = preload("res://Music/bull-rush-menu.wav")
 
 onready var player = get_node("Player")
 onready var level = get_node("MainLevel")
 onready var gui = get_node("CanvasLayer/GUI")
+onready var audio = get_node("AudioStreamPlayer")
 
 var curr_level_ind : int
 var main_level_doors : Array
 var levels_completed : int
+const NUM_LEVELS = 5
 
 var best_times : Array
 var curr_level_time : float # seconds
@@ -23,10 +30,13 @@ func _ready() -> void:
 	set_player_to_start_pos()
 	level.connect("door_entered", self, "on_door_entered")
 	player.connect("player_reset", self, "on_player_reset")
+	player.connect("exit_menu", self, "on_exit_menu")
 	curr_level_ind = 0
 	levels_completed = 0
 	is_timing_player = false
 	best_times = []
+	audio.stream = menu_music
+	audio.play()
 
 func set_player_to_start_pos() -> void:
 	player.reset_anger()
@@ -42,10 +52,14 @@ func level_transition(_level_ind : int) -> void:
 	player.set_state(Player.State.IDLE)
 	player.cam.fade_to_black(true)
 	yield(player.cam, "done_fading")
+	audio.stop()
 	var next_level
 	match _level_ind:
 		0:
-			next_level = main_level_scene.instance()
+			if levels_completed >= NUM_LEVELS:
+				next_level = main_level_end_scene.instance()
+			else:
+				next_level = main_level_scene.instance()
 		1:
 			next_level = level_01_scene.instance()
 		2: 
@@ -54,6 +68,8 @@ func level_transition(_level_ind : int) -> void:
 			next_level = level_03_scene.instance()
 		4: 
 			next_level = level_04_scene.instance()
+		5:
+			next_level = level_05_scene.instance()
 		_:
 			printerr("Bad _level_ind argument in GameManager.level_transition(): " + str(_level_ind))
 			next_level = main_level_scene.instance()
@@ -72,10 +88,16 @@ func level_transition(_level_ind : int) -> void:
 		gui.show_countdown()
 		yield(gui, "countdown_complete")
 		start_timing_player()
+		audio.stream = regular_level_music
+		#audio.pitch_scale = 1.0
 	else:
 		level.set_open_doors(levels_completed)
 		level.set_best_times(best_times)
 		level.current_level = levels_completed + 1
+		audio.stream = menu_music
+	var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"),0)
+	pitch_shift.pitch_scale = 1.0
+	audio.play()
 	player.has_control = true
 
 func start_timing_player() -> void:
@@ -99,8 +121,7 @@ func check_best_time() -> void:
 		var best_t_ind = curr_level_ind - 1
 		if curr_level_time < best_times[best_t_ind]:
 			best_times[best_t_ind] = curr_level_time
-			print(best_times)
-	
+			#print(best_times)
 
 func on_door_entered(_ind) -> void:
 	if curr_level_ind > 0:
@@ -113,6 +134,12 @@ func on_door_entered(_ind) -> void:
 
 func on_china_broken() -> void:
 	player.increase_anger()
+	if curr_level_ind > 0:
+		var pitch_shift = AudioServer.get_bus_effect(AudioServer.get_bus_index("Music"),0)
+		pitch_shift.pitch_scale += 0.1
 
 func on_player_reset() -> void:
 	level_transition(curr_level_ind)
+
+func on_exit_menu() -> void:
+	level_transition(0)
