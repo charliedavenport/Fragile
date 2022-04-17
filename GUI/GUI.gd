@@ -6,6 +6,8 @@ var is_doing_countdown : bool
 onready var countdown_label = get_node("Countdown/Label")
 onready var countdown_timer = get_node("Countdown/CountdownTimer")
 onready var timer_label = get_node("PlayerTimer/Label")
+onready var splash_rect = get_node("CanvasLayer/TextureRect")
+onready var splash_fade = get_node("FadeTween")
 
 signal countdown_complete
 
@@ -15,6 +17,9 @@ func _ready() -> void:
 	countdown_timer.wait_time = COUNTDOWN_INTERVAL
 	countdown_timer.one_shot = true
 	show_playertimer(false)
+
+func show_splash() -> void:
+	pass
 
 func show_countdown() -> void:
 	if is_doing_countdown:

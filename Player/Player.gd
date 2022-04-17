@@ -16,6 +16,7 @@ var vel : Vector2
 onready var cam = get_node("PlayerCamera")
 onready var sprite = get_node("Sprite")
 onready var run_anim_timer = get_node("RunAnimTimer")
+onready var audio = get_node("AudioStreamPlayer")
 var is_running : bool
 var has_control : bool
 
@@ -150,6 +151,7 @@ func increase_anger() -> void:
 		cam.flash_background(true)
 	var gb_val = lerp(1.0, 0.0, min((1.0/float(MAX_ANGER)) * anger_level, 1.0))
 	sprite.modulate = Color(1.0, gb_val, gb_val, 1.0)
+	audio.play()
 	if anger_level >= MAX_ANGER:
 		rage_and_reset()
 

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Mudchute_cow_1.wav-be01e9c565366c77cea0170a03ca1a05.sample"
+
+[deps]
+
+source_file="res://Sound/Mudchute_cow_1.wav"
+dest_files=[ "res://.import/Mudchute_cow_1.wav-be01e9c565366c77cea0170a03ca1a05.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

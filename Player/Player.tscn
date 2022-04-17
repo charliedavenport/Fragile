@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/PlayerCamera.gd" type="Script" id=2]
 [ext_resource path="res://Player/bull_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://Sound/Mudchute_cow_1.wav" type="AudioStream" id=4]
 
 [sub_resource type="OccluderPolygon2D" id=29]
 polygon = PoolVector2Array( -23.7037, -8.88889, -11.8519, -20.7407, 11.8519, -20.7407, 23.7037, -8.88889, 23.7037, 8.88889, 11.8519, 20.7407, -11.8519, 20.7407, -23.7037, 8.88889 )
@@ -74,3 +75,7 @@ one_shot = true
 
 [node name="RunAnimTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0

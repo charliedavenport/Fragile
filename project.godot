@@ -46,6 +46,7 @@ _global_script_class_icons={
 
 config/name="Fragile"
 run/main_scene="res://GameManager/GameManager.tscn"
+boot_splash/image="res://Wildling-Wallpaper 1080.png"
 config/icon="res://icon.png"
 
 [display]

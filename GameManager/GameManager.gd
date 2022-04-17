@@ -139,7 +139,11 @@ func on_china_broken() -> void:
 		pitch_shift.pitch_scale += 0.1
 
 func on_player_reset() -> void:
+	if gui.is_doing_countdown:
+		return
 	level_transition(curr_level_ind)
 
 func on_exit_menu() -> void:
+	if gui.is_doing_countdown:
+		return
 	level_transition(0)
