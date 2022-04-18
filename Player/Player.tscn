@@ -9,7 +9,7 @@
 polygon = PoolVector2Array( -23.7037, -8.88889, -11.8519, -20.7407, 11.8519, -20.7407, 23.7037, -8.88889, 23.7037, 8.88889, 11.8519, 20.7407, -11.8519, 20.7407, -23.7037, 8.88889 )
 
 [sub_resource type="CircleShape2D" id=28]
-radius = 51.0098
+radius = 32.0
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 4
@@ -25,7 +25,7 @@ scale = Vector2( 4.5, 4.5 )
 texture = ExtResource( 3 )
 hframes = 4
 vframes = 9
-frame = 7
+frame = 16
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
 scale = Vector2( 0.3, 0.3 )
